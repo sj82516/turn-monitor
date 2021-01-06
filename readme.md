@@ -25,7 +25,7 @@ removeOutdataInterval | How long should turn monitor reset the data | 10000 (10s
 
 Example
 ```
-$ docker --env networkInterfaceId=lo0 --env port=8080 --net=host yuanchieh/turn-monitor
+$ docker run --env networkInterfaceId=lo0 --env port=8080 --net=host yuanchieh/turn-monitor
 ```
 If using docker, it must use the same network with TURN server. That's why I use `--net=host`.    
 Remember the Macos and windows doesn't support host network.  
