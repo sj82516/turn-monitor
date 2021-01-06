@@ -2,10 +2,10 @@
 Monitor your turn server, no matter what the turn server is.  
 
 ## Why use this project  
-At the time released this project, the Coturn [#666](https://github.com/coturn/coturn/issues/666) has some issue about statistics.  So I cannot know   
-What is current active connection amounts ?   
-Is some specific user active right now ?    
-How many bandwidth are used by users ?   
+At the time released this project, the Coturn [#666](https://github.com/coturn/coturn/issues/666) has some issue about statistics.  So I don't know   
+1. What is current active connection amounts ?   
+2. Is some specific user active right now ?    
+3. How many bandwidth are used by users ?   
 
 ## How it works
 Turn monitor would listen on network interface and parse every packet to STUN/TURN related packet.  
@@ -27,7 +27,7 @@ Example
 ```
 $ docker --env networkInterfaceId=lo0 --env port=8080 --net=host yuanchieh/turn-monitor
 ```
-If using docker, it must using the same network interface with TURN server. That's why I use `--net=host`.    
+If using docker, it must use the same network with TURN server. That's why I use `--net=host`.    
 Remember the Macos and windows doesn't support host network.  
 
 or 
@@ -47,7 +47,7 @@ $ networkInterfaceId=lo0 port=8080 node build/index.js
 Only one api `GET /stats?log={boolean}`.  
 Set log to true if you want to see the last 1000 parsed TURN messages.  
 
-sample response  with log is true, otherwise the log would return empty string
+sample response  with log set to true, otherwise the log would return empty string
 ```json
 {
    "currentUserAmount":2,
@@ -224,5 +224,4 @@ sample response  with log is true, otherwise the log would return empty string
 ## Can I rely on this project
 I used in production and it serves well.  
 At least it doesn't crash or eating up memory.  
-Of course if you find any problem, feel free to open issue.  
-If you have any statistic want to see, also welcom to open issue.  
+Find any problem or any suggestion, feel free to open issue.  
