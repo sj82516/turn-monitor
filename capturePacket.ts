@@ -31,9 +31,9 @@ export default class CapturePacketManager {
     };
 
     constructor(
-        private networkInterface: string, 
-        private removeOutdataInterval: number, 
-        private verbose: boolean) 
+        private networkInterface: string,
+        private removeOutdataInterval: number,
+        private verbose: boolean)
     {
         const networkInterfaces = os.networkInterfaces();
         if (!networkInterfaces[this.networkInterface]) {
@@ -49,7 +49,13 @@ export default class CapturePacketManager {
     }
 
     private packetHandle = (rawPacket: any): void => {
-        const packet = pcap.decode.packet(rawPacket);
+        let packet
+        try {
+            packet = pcap.decode.packet(rawPacket);
+        } catch (e) {
+            // silence fail
+            return
+        }
 
         if (packet?.payload?.payload) {
             const {
@@ -127,7 +133,7 @@ export default class CapturePacketManager {
     private isLocalIp(ip: string): boolean {
         return this.localIpList.includes(ip);
     }
-    
+
     private getLocalIpList() {
         const nets = os.networkInterfaces();
         const results = [];
